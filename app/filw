@@ -1,0 +1,73 @@
+# @app.route('/', methods=['GET'])
+# def index(self):
+#     self.message = 'You are welcome'
+#     return jsonify{'Welcome': 'The app is working'}
+
+
+class AllOrders(Resource):
+    """
+    fetching all menu items
+    """
+    def get(self):
+        query = "SELECT * FROM menu "
+        cur.execute(query)
+        result = cur.fetchall()
+        for row in row:
+            print "Menu ID = ", row[0]
+            print "Menu Item =", row[1]
+            print "Menu Description =", row[3]
+        # return result
+        return {'Menu': result}
+        # return {'All orders available': orders}
+    def post(self, menuId, menuItem, menuDescription):
+        query = "Insert INTO menu (menuId, menuItem, menuDescription) VALUES({},'{}','{}')".format(menuId, menuItem, menuDescription)
+        cur.execute(query)
+
+
+
+# class Order(Resource):
+#     """
+#         define functions to create, delete, get and update the order items
+#     """
+#     #getting one item
+
+#     def get(self, orderId):
+#         order = next(filter(lambda x: x['orderId'] == orderId, orders), None)
+#         return {'order': order}, 200 if order else 404
+
+#     #creating an order
+#     def post(self, orderId):
+#         if next(filter(lambda x: x['orderId'] == orderId, orders), None) is not None:
+#             return {'message': "An order with Order ID '{}' already exists." .format(orderId)}, 400
+
+#         data = request.get_json()
+#         order = {'orderId': orderId,
+#                  'orderTitle': data['orderTitle'],
+#                  'orderDescription': data['orderDescription']}
+#         orders.append(order)
+#         return order, 201
+
+#     #deleting an order
+#     def delete(self, orderId):
+#         global orders
+#         orders = list(filter(lambda x: x['orderId'] != orderId, orders))
+#         return {'message': 'Order has been successfuly deleted'}
+
+#     #updating an order
+#     def put(self, orderId):
+#         data = request.get_json()
+#         order = next(filter(lambda x: x['orderId'] == orderId, orders), None)
+#         if order is None:
+#             order = {'orderId': orderId,
+#                      'orderTitle': data['orderTitle'],
+#                      'orderDescription': data['orderDescription']}
+#             orders.append(order)
+#         else:
+#             order.update(data)
+#         return order
+
+
+#url that connects to the AllOrders class
+api.add_resource(AllOrders, '/api/v1/orders')
+#url that connects to the order class
+# api.add_resource(Order, '/api/v1/order/<int:orderId>')
