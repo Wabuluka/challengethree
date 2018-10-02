@@ -49,6 +49,6 @@ class DatabaseConnection():
         self.cursor.execute(self.menu_table)
 
     def create_order_list(self):
-        self.order_table = ("CREATE TABLE IF NOT EXITS orders (orderId serial primary key,userId int not null, FOREIGN KEY(userId) REFERENCES users(userId), menuId int not null, FOREIGN KEY(menuId) REFERENCES menu(menuId))")
+        self.order_table = ("CREATE TABLE IF NOT EXISTS orders (orderId serial primary key,userId int not null, FOREIGN KEY(userId) REFERENCES users(userId), menuId int not null, FOREIGN KEY(menuId) REFERENCES menu(menuId))")
         self.cursor.execute(self.order_table)
         

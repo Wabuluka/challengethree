@@ -1,26 +1,23 @@
+from app import app
 from app.models.database import DatabaseConnection
 
 database = DatabaseConnection()
-database.create_user_table()
-database.cursor
 
-class User:
-    def __init__(self, _id, username, password):
-        self.id = _id
-        self.username = username
-        self.password = password
+# database.create_user_table()
+database.create_menu_list()
+cur = database.cursor
 
-    def select_user_by_name(self, username):
-        # database = DatabaseConnection()
-        # database.create_user_table()
-        # database.cursor
+class User():
+    """
+        Handling users
+    """
+    def post(self, userId, username, password):
+        query = "Insert INTO users (userId, username, password) VALUES({},'{}','{}')".format(
+            userId, username, password)
+        cur.execute(query)
 
-        query = "SELECT * from users WHERE username =?"
-        result = cursor.execute(query, (username,))
-        row = result.fetchone()
-        if row:
-            user = User(row[0], row[1], row[2])
-        else:
-            user = None
-        connection.close()
-        return user
+    def signin(self, username, password):
+        query = "SELECT username, password FROM users WHERE username = {} AND password ={}"
+        cur.execute(query)
+        result = cur.fetchone()
+        return result
