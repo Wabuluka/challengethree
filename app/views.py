@@ -7,8 +7,6 @@ from flask_jwt_extended import (
 )
 
 from app.models.database import DatabaseConnection
-# from flask_jwt import JWT, jwt_required
-# from app.authentication import authenticate, identity
 #app = Flask(__name__)
 from app.models.order import Orders
 from app.models.menu import Menu
@@ -30,6 +28,15 @@ database.create_user_table()
 database.create_menu_list()
 cur = database.cursor
 
+#New users can create accounts
+@app.route('/api/v1/auth/signup', methods = ['POST'])
+def create_new_user():
+    data = request.get_json()
+    userId = data['userId']
+    username = data['username']
+    password = data['password']
+    insert = user.post(userId, username, password)
+    return jsonify({'Menu Item created': insert})
 """
     Handling the order endpoints
 """
@@ -46,17 +53,17 @@ cur = database.cursor
 #     return jsonify({'order': response})
 
 
-# @app.route('/orders/<int:orderId>', methods=['POST'])
+@app.route('/api/v1/orders/<int:orderId>', methods=['POST'])
 # @jwt_required
-#     # Access the identity of the current user with get_jwt_identity  
-# def create_order(orderId):
-#     current_user = get_jwt_identity()
-#     data = request.get_json()
-#     orderId = data['orderId']
-#     menuId = data['menuId']
-#     userId = data['userId']
-#     insert_user= order.post(orderId, menuId, userId)
-#     return jsonify({'order': insert_user})
+    # Access the identity of the current user with get_jwt_identity  
+def create_order(orderId):
+    # current_user = get_jwt_identity()
+    data = request.get_json()
+    orderId = data['orderId']
+    menuId = data['menuId']
+    userId = data['userId']
+    insert_user= order.post(orderId, menuId, userId)
+    return jsonify({'order': insert_user})
 
 
 
@@ -82,16 +89,9 @@ cur = database.cursor
 # """
 #     Handling user end points
 # """
-# @app.route('/auth/signup', methods = ['POST'])
-# def create_new_user():
-#     data = request.get_json()
-#     userId = data['userId']
-#     username = data['username']
-#     password = data['password']
-#     insert = user.post(userId, username, password)
-#     return jsonify({'Menu Item created': insert})
 
-@app.route('/api/v1/auth/signin/1', methods=['POST'])
+
+@app.route('/api/v1/auth/signin', methods=['POST'])
 def create_signin():
     data = request.get_json()
     username = data['username']
@@ -102,4 +102,15 @@ def create_signin():
     # access_token = create_access_token(identity=username)
     # return jsonify(access_token=access_token), 200
     return select_user
+    
+# @app.route('/auth/signin', methods=['POST'])
+# def create_signin():
+#     data = request.get_json()
+#     username = data['username']
+#     password = data['password']
+
+#     select_user = user.signin(username, password)
+#     # Identity can be any data that is json serializable
+#     access_token = create_access_token(identity=username)
+#     return jsonify(access_token=access_token), 200
     

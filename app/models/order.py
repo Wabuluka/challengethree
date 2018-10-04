@@ -2,9 +2,9 @@ from app import app
 from app.models.database import DatabaseConnection
 
 database = DatabaseConnection()
-# database.create_order_list()
-# database.create_user_table()
-#database.create_menu_list()
+database.create_order_list()
+database.create_user_table()
+database.create_menu_list()
 cur = database.cursor
 
 class Orders():
