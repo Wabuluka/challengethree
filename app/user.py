@@ -16,8 +16,8 @@ class User():
             userId, username, password)
         cur.execute(query)
 
-    def signin(self, username, password):
-        query = "SELECT * FROM users WHERE username = username AND password = password"
-        cur.execute(query)
-        result = cur.fetchone()
-        return result
+#     def signin(self, username, password):
+#         query = "SELECT * FROM users WHERE username = username AND password = password"
+#         cur.execute(query)
+#         result = cur.fetchone()
+#         return result

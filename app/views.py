@@ -10,8 +10,8 @@ from app.models.database import DatabaseConnection
 # from flask_jwt import JWT, jwt_required
 # from app.authentication import authenticate, identity
 #app = Flask(__name__)
-from app.models.order import Orders
-from app.models.menu import Menu
+# from app.models.order import Orders
+# from app.models.menu import Menu
 from app.user import User
 
 #
@@ -22,14 +22,23 @@ api = Api(app)
 
 
 database = DatabaseConnection()
-order = Orders()
-menu = Menu()
+# order = Orders()
+# menu = Menu()
 user = User()
 
 database.create_user_table()
 database.create_menu_list()
 cur = database.cursor
 
+#New users can create accounts
+@app.route('/api/v1/auth/signup', methods = ['POST'])
+def create_new_user():
+    data = request.get_json()
+    userId = data['userId']
+    username = data['username']
+    password = data['password']
+    insert = user.post(userId, username, password)
+    return jsonify({'Menu Item created': insert})
 """
     Handling the order endpoints
 """
@@ -82,14 +91,7 @@ cur = database.cursor
 # """
 #     Handling user end points
 # """
-# @app.route('/auth/signup', methods = ['POST'])
-# def create_new_user():
-#     data = request.get_json()
-#     userId = data['userId']
-#     username = data['username']
-#     password = data['password']
-#     insert = user.post(userId, username, password)
-#     return jsonify({'Menu Item created': insert})
+
 
 # @app.route('/auth/signin', methods=['POST'])
 # def create_signin():
