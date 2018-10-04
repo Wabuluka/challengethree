@@ -8,3 +8,13 @@ user = {
     'username': 'davies',
     'password': '123'
 }
+new_user = {
+    'userId': 1,
+    'username': 'josh',
+    'password': '123'
+}
+menu = {
+    'menuid':1,
+    'menuitem': 'food 1',
+    'menudescription': 'food doo'
+}

@@ -3,26 +3,27 @@ from app import app
 from app.models.database import DatabaseConnection
 import json
 
+db = DatabaseConnection()
 
 class BaseTest(unittest.TestCase):
 
     def setUp(self):
         self.app = app
         self.client = self.app.test_client()
-        db = DatabaseConnection()
+        
         db.create_menu_list()
         
         
 
 
     def tearDown(self):
-        # clear_user = "DELETE FROM users CASCADE"
-        # db = DatabaseConnection()
-        # cur.database()
-        # db.drop_data_from_orders_table()
-        # cur.execute(clear_user)
-        pass
-    
+        clear_user = "TRUNCATE TABLE users CASCADE"
+        clear_order = "TRUNCATE TABLE orders CASCADE"
+        clear_menu = "TRUNCATE TABLE menu CASCADE"
+        db.cursor.execute(clear_user)
+        db.cursor.execute(clear_order)
+        db.cursor.execute(clear_menu)
+        
 
 
 

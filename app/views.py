@@ -68,22 +68,22 @@ def create_order(orderId):
 
 
 
-# """
-#     Handling the menu endpoints
-# """
-# @app.route('/menu', methods=['POST'])
-# def create_item():
-#     data = request.get_json()    
-#     menuId = data['menuId']
-#     menuItem = data['menuItem']
-#     menuDescription = data['menuDescription']
-#     insert = menu.post(menuId, menuItem, menuDescription)
-#     return jsonify({'Menu Item created': insert}), 201
+"""
+    Handling the menu endpoints
+"""
+@app.route('/api/v1/menu', methods=['POST'])
+def create_item():
+    data = request.get_json()    
+    menuId = data['menuId']
+    menuItem = data['menuItem']
+    menuDescription = data['menuDescription']
+    insert = menu.post(menuId, menuItem, menuDescription)
+    return jsonify({'Menu Item created': insert}), 201
 
-# @app.route('/menu', methods=['GET'])
-# def get_menu_items():
-#     response = menu.get()
-#     return jsonify({'order': response})
+@app.route('/api/v1/menu', methods=['GET'])
+def get_menu_items():
+    response = menu.get()
+    return jsonify({'order': response})
 
 
 # """

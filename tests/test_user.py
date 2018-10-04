@@ -1,5 +1,5 @@
 from tests.base_test import BaseTest
-from . import user
+from . import user, new_user
 
 class TestUser(BaseTest):
     def test_nothing(self):
@@ -7,14 +7,10 @@ class TestUser(BaseTest):
 
     def test_create_order(self):
         # testing the user sign in endpoint
-        response = self.client.post('/api/v1/auth/signin/', json=dict(user))
+        response = self.client.post('/api/v1/auth/signin/1', json=dict(user))
         self.assertEqual(response.status_code, 200)
 
-new_user = {
-    'userId': 4,
-    'username': 'josh',
-    'password': '123'
-}
+
 class UserTest(BaseTest):
     
     def test_create_user(self):
