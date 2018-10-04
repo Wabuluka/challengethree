@@ -7,14 +7,14 @@ database.create_user_table()
 # database.create_menu_list()
 cur = database.cursor
 
-class Users():
-    def post(self, userId, username, password):
-        query = "INSERT INTO users (userId, username, password) VALUES('{}','{}','{}')".format(
-            userId, username, password)
-        cur.execute(query)
+# class Users():
+#     def post(self, userId, username, password):
+#         query = "INSERT INTO users (userId, username, password) VALUES('{}','{}','{}')".format(
+#             userId, username, password)
+#         cur.execute(query)
 
-    def get(self, userId, username, password):
-        query = "SELECT * FROM users WHERE"
-        cur.execute(query, (userId, username, password))
-        return cur.fetchone()
+#     def get(self, userId, username, password):
+#         query = "SELECT * FROM users WHERE"
+#         cur.execute(query, (userId, username, password))
+#         return cur.fetchone()
         
