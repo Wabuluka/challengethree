@@ -30,6 +30,7 @@ cur = database.cursor
 
 #New users can create accounts
 @app.route('/api/v1/auth/signup', methods = ['POST'])
+# @api.doc(params={'id': 'An ID'})
 def create_new_user():
     data = request.get_json()
     userId = data['userId']

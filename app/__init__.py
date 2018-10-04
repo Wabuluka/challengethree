@@ -1,4 +1,5 @@
 from flask import Flask
+from flask_restplus import Api
 from flask_jwt_extended import (
     JWTManager, jwt_required, create_access_token,
     get_jwt_identity
@@ -7,11 +8,10 @@ from flask_jwt_extended import (
 #initialize the app
 # app = Flask(__name__, instance_relative_config=True)
 
-# def init_app():
+
 app = Flask(__name__, instance_relative_config=True)
 app.config.from_object('config')
-    # return app
-
+api = Api(app)
 
 
 #Load the views
