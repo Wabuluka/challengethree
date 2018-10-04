@@ -39,7 +39,7 @@ class DatabaseConnection:
 
     def create_user_table(self):
         self.user_table = (
-            "CREATE TABLE IF NOT EXISTS users (userId serial primary key, username varchar(50) not null, password varchar not null )")
+            "CREATE TABLE IF NOT EXISTS users (userId serial primary key, username varchar(50) not null,userRole varchar(8) not null, password varchar not null )")
         self.cursor.execute(self.user_table)
         
 
