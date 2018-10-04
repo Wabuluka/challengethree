@@ -34,10 +34,10 @@ cur = database.cursor
     Handling the order endpoints
 """
 # #getting all the orders from the database
-# @app.route('/orders', methods=['GET'])
-# def get_all_orders():
-#     response = order.get()
-#     return jsonify({'orders': response})
+@app.route('/api/v1/orders', methods=['GET'])
+def get_all_orders():
+    response = order.get()
+    return jsonify({'orders': response})
 
 # # @jwt_required
 # @app.route('/orders/<int:orderId>', methods =['GET'])
