@@ -91,14 +91,15 @@ cur = database.cursor
 #     insert = user.post(userId, username, password)
 #     return jsonify({'Menu Item created': insert})
 
-# @app.route('/auth/signin', methods=['POST'])
-# def create_signin():
-#     data = request.get_json()
-#     username = data['username']
-#     password = data['password']
+@app.route('/api/v1/auth/signin/1', methods=['POST'])
+def create_signin():
+    data = request.get_json()
+    username = data['username']
+    password = data['password']
 
-#     select_user = user.signin(username, password)
-#     # Identity can be any data that is json serializable
-#     access_token = create_access_token(identity=username)
-#     return jsonify(access_token=access_token), 200
+    select_user = user.signin(username, password)
+    # Identity can be any data that is json serializable
+    # access_token = create_access_token(identity=username)
+    # return jsonify(access_token=access_token), 200
+    return select_user
     
