@@ -1,16 +1,12 @@
 from tests.base_test import BaseTest
-order = {
-    "orderId": 3,
-    "userId": 1,
-    "menuId": 1
-}
+from .import order
 class OrderTest(BaseTest):
     def test_nothing(self):
         pass
-        
-    # def test_get_orders(self):
-    #     response = self.client.get('/orders')
-    #     self.assertEqual(response.status_code, 200)
+      
+    def test_get_orders(self):
+        response = self.client.get('/api/v1/orders')
+        self.assertEqual(response.status_code, 200)
 
     # def test_get_order(self):
     #     response = self.client.get('/orders/1')
