@@ -16,10 +16,12 @@ class BaseTest(unittest.TestCase):
 
 
     def tearDown(self):
-        clear_user = "DELETE FROM users CASCADE"
-        db = DatabaseConnection()
-        db.drop_data_from_orders_table()
-        cur.execute(clear_user)
+        # clear_user = "DELETE FROM users CASCADE"
+        # db = DatabaseConnection()
+        # cur.database()
+        # db.drop_data_from_orders_table()
+        # cur.execute(clear_user)
+        pass
     
 
 
