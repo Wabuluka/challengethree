@@ -46,17 +46,17 @@ cur = database.cursor
 #     return jsonify({'order': response})
 
 
-# @app.route('/orders/<int:orderId>', methods=['POST'])
+@app.route('/api/v1/orders/<int:orderId>', methods=['POST'])
 # @jwt_required
-#     # Access the identity of the current user with get_jwt_identity  
-# def create_order(orderId):
-#     current_user = get_jwt_identity()
-#     data = request.get_json()
-#     orderId = data['orderId']
-#     menuId = data['menuId']
-#     userId = data['userId']
-#     insert_user= order.post(orderId, menuId, userId)
-#     return jsonify({'order': insert_user})
+    # Access the identity of the current user with get_jwt_identity  
+def create_order(orderId):
+    # current_user = get_jwt_identity()
+    data = request.get_json()
+    orderId = data['orderId']
+    menuId = data['menuId']
+    userId = data['userId']
+    insert_user= order.post(orderId, menuId, userId)
+    return jsonify({'order': insert_user})
 
 
 

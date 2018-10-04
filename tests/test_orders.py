@@ -1,9 +1,5 @@
 from tests.base_test import BaseTest
-order = {
-    "orderId": 3,
-    "userId": 1,
-    "menuId": 1
-}
+from .import order
 class OrderTest(BaseTest):
     def test_nothing(self):
         pass
@@ -16,9 +12,10 @@ class OrderTest(BaseTest):
     #     response = self.client.get('/orders/1')
     #     self.assertEqual(response.status_code, 200)
 
-    # def test_create_order(self):
-    #     response = self.client.post('/orders/1', json = dict(order))
-    #     self.assertEqual(response.status_code, 200)
+    def test_create_order(self):
+        response = self.client.post(
+            '/api/v1/orders/1', json=dict(order))
+        self.assertEqual(response.status_code, 200)
 
     # def test_update_order(self):
     #     response = self.client.put('/orders/', json = dict(order))
