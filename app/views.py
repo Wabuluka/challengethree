@@ -30,13 +30,13 @@ cur = database.cursor
 
 #New users can create accounts
 @app.route('/api/v1/auth/signup', methods = ['POST'])
-# @api.doc(params={'id': 'An ID'})
 def create_new_user():
     data = request.get_json()
     userId = data['userId']
     username = data['username']
+    userRole = data['userRole']
     password = data['password']
-    insert = user.post(userId, username, password)
+    insert = user.post(userId, username, userRole, password)
     return jsonify({'Menu Item created': insert})
 """
     Handling the order endpoints
@@ -47,24 +47,25 @@ def get_all_orders():
     response = order.get()
     return jsonify({'orders': response})
 
-# # @jwt_required
-# @app.route('/orders/<int:orderId>', methods =['GET'])
-# def get_one_order(orderId):
-#     response = order.get_one_order(orderId)
-#     return jsonify({'order': response})
+# @jwt_required
+@app.route('/orders/<int:orderId>', methods =['GET'])
+def get_one_order(orderId):
+    response = order.get_one_order(orderId)
+    return jsonify({'order': response})
 
 
 @app.route('/api/v1/orders/<int:orderId>', methods=['POST'])
 # @jwt_required
     # Access the identity of the current user with get_jwt_identity  
-def create_order(orderId):
+def create_order():
     # current_user = get_jwt_identity()
     data = request.get_json()
     orderId = data['orderId']
     menuId = data['menuId']
     userId = data['userId']
-    insert_user= order.post(orderId, menuId, userId)
-    return jsonify({'order': insert_user})
+    orderName = data['orderName']
+    insert_order= order.post(orderId, menuId, userId, orderName)
+    return jsonify({'order': insert_order})
 
 
 

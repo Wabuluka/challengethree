@@ -8,13 +8,13 @@ database.create_menu_list()
 cur = database.cursor
 
 class Users():
-    def post(self, userId, username, password):
-        query = "INSERT INTO users (userId, username, password) VALUES('{}','{}','{}')".format(
-            userId, username, password)
+    def post(self, userId, username, userRole, password):
+        query = "INSERT INTO users (userId, username,userRole, password) VALUES('{}','{}','{}','{}')".format(
+            userId, username, userRole, password)
         cur.execute(query)
 
-    def get(self, userId, username, password):
+    def get(self, username, password):
         query = "SELECT * FROM users WHERE"
-        cur.execute(query, (userId, username, password))
+        cur.execute(query, (username, password))
         return cur.fetchone()
         

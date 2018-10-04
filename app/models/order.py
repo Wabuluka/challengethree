@@ -15,9 +15,9 @@ class Orders():
         result = cur.fetchall()
         return result
 
-    def post(self, orderId, menuId, userId):
-        query = "Insert INTO orders (orderId, menuId, userId) VALUES({},'{}','{}')".format(
-            orderId, menuId, userId)
+    def post(self, orderId, menuId, userId, orderName):
+        query = "Insert INTO orders (orderId, menuId, userId, orderName) VALUES({},'{}','{}','{}')".format(
+            orderId, menuId, userId, orderName)
         cur.execute(query)
 
     def get_one_order(self, orderId):
