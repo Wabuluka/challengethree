@@ -9,12 +9,12 @@ cur = database.cursor
 
 class Users():
     def post(self, userId, username, password):
-        query = "INSERT INTO users (userId, username, password) VALUES({},'{}','{}')".format(
+        query = "INSERT INTO users (userId, username, password) VALUES('{}','{}','{}')".format(
             userId, username, password)
         cur.execute(query)
 
     def get(self, userId, username, password):
-        query = "SELECT * FROM users"
+        query = "SELECT * FROM users WHERE"
         cur.execute(query, (userId, username, password))
         return cur.fetchone()
         

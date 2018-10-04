@@ -15,7 +15,7 @@ from app.models.menu import Menu
 from app.user import User
 
 #
-app.config['jkfdoaucakcaksjsadkcpadtfasckjxacyia;lbdvgcxcxacu;lxckgx'] = '123' 
+app.config['SECRET_KEY'] = 'secret' 
 jwt = JWTManager(app)
 
 api = Api(app)
@@ -102,7 +102,3 @@ def create_signin():
     access_token = create_access_token(identity=username)
     return jsonify(access_token=access_token), 200
     
-    if select_user:
-        access_token = create_access_token(select_user)
-        return jsonify(token = access_token)
-    return jsonify({'Message': 'Invalid Username or Password'})
