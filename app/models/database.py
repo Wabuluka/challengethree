@@ -1,3 +1,4 @@
+import os
 import psycopg2
 from psycopg2 import  Error
 
@@ -14,13 +15,24 @@ from psycopg2 import  Error
 class DatabaseConnection:   
     def __init__(self):     
         try:
-            self.connection = psycopg2.connect(user="postgres",
-                                                password="root123",
-                                                host="127.0.0.1",
-                                                port="5432",
-                                                database="challengethree")
-            self.connection.autocommit = True
-            self.cursor = self.connection.cursor()
+            if os.getenv("two") == "one":
+                self.connection = psycopg2.connect(user="huthjazzsyrtes",
+                                                   password="26322b4349b6b5afae9aac7a2aed4e193f26b7f56b12758d8e53057843fedb88",
+                                                   host="ec2-50-17-225-140.compute-1.amazonaws.com",
+                                                   port="5432",
+                                                   database="d9qjbmi8scereg")
+                                                
+                self.connection.autocommit = True
+                self.cursor = self.connection.cursor()
+            else:
+                self.connection = psycopg2.connect(user="postgres",
+                                                   password="root123",
+                                                   host="127.0.0.1",
+                                                   port="5432",
+                                                   database="challengethree")
+                self.connection.autocommit = True
+                self.cursor = self.connection.cursor()
+
             #print PostgreSQl properties
             #print (self.connection.get_dsn_parameters(), "\n")
 
