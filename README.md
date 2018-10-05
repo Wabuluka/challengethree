@@ -1,6 +1,7 @@
-# challengethree
+# challenge three
 challenge three andela
-# CRUD API - Andela
+
+[![Maintainability](https://api.codeclimate.com/v1/badges/710cfde5256d3d6ee6e0/maintainability)](https://codeclimate.com/github/Wabuluka/challengethree/maintainability)
 
 In this API, I have put together a simple way in which you can create, retrieve, update and delete data from a list
 ## Getting Started

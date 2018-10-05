@@ -7,10 +7,12 @@ database = DatabaseConnection()
 database.create_menu_list()
 cur = database.cursor
 
+
 class User():
     """
         Handling users
     """
+
     def post(self, userId, username, password):
         query = "Insert INTO users (userId, username, password) VALUES({},'{}','{}')".format(
             userId, username, password)
