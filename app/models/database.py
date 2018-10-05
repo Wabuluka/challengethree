@@ -39,7 +39,7 @@ class DatabaseConnection:
 
     def create_user_table(self):
         self.user_table = (
-            "CREATE TABLE IF NOT EXISTS users (userId serial primary key, username varchar(50) not null,userRole varchar(8) not null, password varchar not null )")
+            "CREATE TABLE IF NOT EXISTS users (userId serial primary key, username varchar(50) not null, password varchar not null )")
         self.cursor.execute(self.user_table)
         
 
@@ -49,7 +49,7 @@ class DatabaseConnection:
         self.cursor.execute(self.menu_table)
 
     def create_order_list(self):
-        self.order_table = ("CREATE TABLE IF NOT EXISTS orders (orderId serial primary key,userId int not null, FOREIGN KEY(userId) REFERENCES users(userId), menuId int not null, FOREIGN KEY(menuId) REFERENCES menu(menuId), orderName varchar(10) not null)")
+        self.order_table = ("CREATE TABLE IF NOT EXISTS orders (orderId serial primary key,userId int not null, FOREIGN KEY(userId) REFERENCES users(userId), menuId int not null, FOREIGN KEY(menuId) REFERENCES menu(menuId))")
         self.cursor.execute(self.order_table)
         
     def drop_data_from_orders_table(self, drop_orders):

@@ -2,8 +2,8 @@ from tests.base_test import BaseTest
 from . import menu
 class MenuTest(BaseTest):
 
-    def test_nothing(self):
-        pass
+    # def test_nothing(self):
+    #     pass
 
     def test_get_menu_items(self):
         response = self.client.get('/api/v1/menu')

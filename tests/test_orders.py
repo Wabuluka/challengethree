@@ -1,8 +1,8 @@
 from tests.base_test import BaseTest
 from .import order
 class OrderTest(BaseTest):
-    def test_nothing(self):
-        pass
+    # def test_nothing(self):
+    #     pass
         
     # def test_get_orders(self):
     #     response = self.client.get('/orders')

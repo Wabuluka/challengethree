@@ -17,7 +17,15 @@ class User():
         cur.execute(query)
 
     def signin(self, username, password):
-        query = "SELECT * FROM users WHERE username = {} AND password = {}" .format(username, password)
-        cur.execute(query)
-        result = cur.fetchone()
-        return result
+        try:
+            query = "SELECT * FROM users WHERE username= %s AND password= %s"
+            # query = "SELECT userId FROM users WHERE username = {} AND password = {}".format(
+            #     username, password)
+            # query = "SELECT * FROM users "
+            cur.execute(query, (username, password))
+            result = cur.fetchone()
+            print(result)
+            return result
+        except Exception as error:
+
+            print(str(error))

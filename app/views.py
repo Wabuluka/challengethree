@@ -34,18 +34,42 @@ def create_new_user():
     data = request.get_json()
     userId = data['userId']
     username = data['username']
-    userRole = data['userRole']
+    # userRole = data['userRole']
     password = data['password']
-    insert = user.post(userId, username, userRole, password)
+    insert = user.post(userId,username, password)
     return jsonify({'Menu Item created': insert})
+
+
+@app.route('/api/v1/auth/signin', methods=['POST'])
+def create_signin():
+    data = request.get_json()
+    username = data['username']
+    password = data['password']
+    select_user = user.signin(username, password)
+    print(select_user)
+    if not select_user:
+        return jsonify({'message': 'user not found'})
+    else:
+        access_token = create_access_token(identity=select_user)
+        return jsonify(access_token=access_token), 200
 """
     Handling the order endpoints
 """
 # #getting all the orders from the database
 @app.route('/api/v1/orders', methods=['GET'])
+@jwt_required
 def get_all_orders():
+    current_user = get_jwt_identity()
     response = order.get()
-    return jsonify({'orders': response})
+    return jsonify({'orders': response, 'Logged_in_as': current_user})
+
+# #get orders for a user
+# @app.route('/api/v1/user/orders', methods=['GET'])
+# @jwt_required
+# def get_user_order(self, userId):
+#     current_user = get_jwt_identity()
+#     response = order.get_orders_for_user(userId)
+#     return jsonify({'orders': response, 'Logged_in_as': current_user})
 
 # @jwt_required
 @app.route('/orders/<int:orderId>', methods =['GET'])
@@ -53,8 +77,7 @@ def get_one_order(orderId):
     response = order.get_one_order(orderId)
     return jsonify({'order': response})
 
-
-@app.route('/api/v1/orders/<int:orderId>', methods=['POST'])
+@app.route('/api/v1/users/orders/<int:orderId>', methods=['POST'])
 # @jwt_required
     # Access the identity of the current user with get_jwt_identity  
 def create_order():
@@ -63,13 +86,9 @@ def create_order():
     orderId = data['orderId']
     menuId = data['menuId']
     userId = data['userId']
-    orderName = data['orderName']
-    insert_order= order.post(orderId, menuId, userId, orderName)
+    # orderName = data['orderName']
+    insert_order= order.post(orderId, menuId, userId)
     return jsonify({'order': insert_order})
-
-
-
-
 """
     Handling the menu endpoints
 """
@@ -88,31 +107,4 @@ def get_menu_items():
     return jsonify({'order': response})
 
 
-# """
-#     Handling user end points
-# """
-
-
-@app.route('/api/v1/auth/signin', methods=['POST'])
-def create_signin():
-    data = request.get_json()
-    username = data['username']
-    password = data['password']
-
-    select_user = user.signin(username, password)
-    # Identity can be any data that is json serializable
-    # access_token = create_access_token(identity=username)
-    # return jsonify(access_token=access_token), 200
-    return select_user
-    
-# @app.route('/auth/signin', methods=['POST'])
-# def create_signin():
-#     data = request.get_json()
-#     username = data['username']
-#     password = data['password']
-
-#     select_user = user.signin(username, password)
-#     # Identity can be any data that is json serializable
-#     access_token = create_access_token(identity=username)
-#     return jsonify(access_token=access_token), 200
     

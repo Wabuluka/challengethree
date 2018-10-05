@@ -1,10 +1,14 @@
 order = {
-    "orderId": 3,
+    "orderId": 1,
     "userId": 1,
     "menuId": 1
 }
 user = {
     'userId': 1,
+    'username': 'davies',
+    'password': '123'
+}
+user_in = {
     'username': 'davies',
     'password': '123'
 }
@@ -18,3 +22,4 @@ menu = {
     'menuitem': 'food 1',
     'menudescription': 'food doo'
 }
+

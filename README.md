@@ -50,8 +50,11 @@ Install requirements (pip freeze > requirements.txt)
 |POST| /api/v1/order/<int:orderId>|Place a new order|
 |GET| /api/v1/orders |Get all orders|
 |GET| /api/v1/order/<int:orderId> |Get specific order by orderId|
+|GET| /api/v1/menu |Get all the items on the menu|
+|POST| /api/v1/menu |Post an item to the menu list|
 |PUT| /api/v1/order/<int:orderId> |Update a specified order by orderId|
 |DELETE| /api/v1/order/<int:orderId> |Delete order|
+
 
 ## Running the tests
 
